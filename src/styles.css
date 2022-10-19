@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+footer {
+    color: white;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+.titulo {
+    margin: 10px;
+    color: antiquewhite;
+    font-weight: bolder
+}
+
+.contenedorPrincipal {
+    margin-bottom: 100px;
+}

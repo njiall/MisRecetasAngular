@@ -1,10 +1,17 @@
+/*
+Clase para almacenar/presentar recetas.
+*/
 export class Receta {
-    id: number;
-    nombre: string;
-    categoria: string;
-    etiquetas: string;
-    ingredientes: string;
-    instrucciones: string;
-    notas: string;
-    fechaAlta: string;
+
+    /**Constructor por defecto */
+  constructor(
+    public id: number,
+    public nombre: string,
+    public categoria: string,
+    public etiquetas: string,
+    public ingredientes: string,
+    public instrucciones: string,
+    public notas: string,
+    public fechaAlta: string
+  ) {}
 }

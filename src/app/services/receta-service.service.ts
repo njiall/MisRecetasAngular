@@ -8,8 +8,8 @@ import { Receta } from '../modelo/receta';
 })
 export class RecetaServiceService {
 
-  rutaServidor = 'http://msrecetario.herokuapp.com';
-  //rutaServidor = 'http://localhost:8081';
+  // rutaServidor = 'http://msrecetario.herokuapp.com';
+  rutaServidor = 'http://localhost:8081';
 
   public defaultHeaders = new HttpHeaders();
 
@@ -21,5 +21,7 @@ export class RecetaServiceService {
      return this.httpClient.get<Receta[]>(`${this.rutaServidor}/receta`, { observe: 'response' });
    }
 
-
+    public detalleReceta(id: String): Observable<HttpResponse<Receta>> {
+      return this.httpClient.get<Receta>(`${this.rutaServidor}/receta/detalle/${id}`, { observe: 'response' });
+    }
 }

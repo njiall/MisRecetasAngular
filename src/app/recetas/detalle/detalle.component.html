@@ -1,6 +1,18 @@
+<h1>{{receta.nombre}}</h1>
 <dl>
-    <td>Nombre</td>
-    <dd>Nombre de la receta</dd>
-    <td>Categoría</td>
-    <dd>Categoria de la receta</dd>
+    <td><strong>Nombre</strong></td>
+    <dd>{{ receta.nombre }}</dd>
+    <td><strong>Categoría</strong></td>
+    <dd>{{ receta.categoria}}</dd>
+    <td><strong>Etiquetas</strong></td>
+    <dd>{{ receta.etiquetas}}</dd>
+    <td><strong>Ingredientes</strong></td>
+    <dd>{{ receta.ingredientes}}</dd>
+    <td><strong>Instrucciones</strong></td>
+    <dd>{{ receta.instrucciones}}</dd>
+    <td><strong>Notas</strong></td>
+    <dd>{{ receta.notas}}</dd>
+    <td><strong>Fecha de alta</strong></td>
+    <dd>{{ receta.fechaAlta}}</dd>
 </dl>
+<a [routerLink]="['/recetas']" class="btn btn-block btn-dark">Volver</a>

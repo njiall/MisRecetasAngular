@@ -1,12 +1,13 @@
 <div class="p-3 m-3">
     <h1>{{ tituloPagina }}</h1>
+    <!-- <small>La base de datos contiene {{ recetas.length }} recetas</small> -->
     <table class="table mt-3 animated fadeIn faster">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Categoría</th>
                 <th scope="col">Etiquetas</th>
-                <th scope="col">Fecha de alta</th>
+                <th scope="col">Detalle</th>
             </tr>
         </thead>
         <tbody>
@@ -14,7 +15,7 @@
                 <td>{{ receta.nombre }}</td>
                 <td>{{ receta.categoria }}</td>
                 <td>{{ receta.etiquetas }}</td>
-                <td>{{ receta.fechaAlta }}</td>
+                <button (click)="detalleReceta( receta.id )" type="button" class="btn btn-block">Ver más</button>
             </tr>
         </tbody>
     </table>

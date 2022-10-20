@@ -7,6 +7,7 @@ import { DetalleComponent } from './recetas/detalle/detalle.component';
 import { CabeceraComponent } from './layout/cabecera/cabecera.component';
 import { PieComponent } from './layout/pie/pie.component';
 import {HttpClientJsonpModule, HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { APP_ROUTING } from './app.routes';
 
 
 
@@ -20,6 +21,7 @@ import {HttpClientJsonpModule, HttpClientModule, HTTP_INTERCEPTORS} from '@angul
   ],
   imports: [
     BrowserModule,
+    APP_ROUTING,
     HttpClientModule,
     HttpClientJsonpModule
   ],

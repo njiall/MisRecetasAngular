@@ -25,14 +25,13 @@ export class ListadoComponent  implements OnInit  {
     this.servicio.listarRecetas().subscribe(
       httpresp => {
         this.recetas = <Receta[]>httpresp.body; // casting
-       // this.recetas.forEach(al => console.log(al));
 
       }
       , fallo => { alert('Fallo del servidor'); console.error(fallo); });
 
   }
 
-  detalleReceta(id: String) {
+  detalleReceta(id: Number) {
     this.router.navigate(['/detalle', id]);
   }
 

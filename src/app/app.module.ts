@@ -6,7 +6,7 @@ import { ListadoComponent } from './recetas/listado/listado.component';
 import { DetalleComponent } from './recetas/detalle/detalle.component';
 import { CabeceraComponent } from './layout/cabecera/cabecera.component';
 import { PieComponent } from './layout/pie/pie.component';
-import {HttpClientJsonpModule, HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 import { APP_ROUTING } from './app.routes';
 
 

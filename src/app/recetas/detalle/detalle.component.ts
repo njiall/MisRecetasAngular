@@ -15,10 +15,11 @@ export class DetalleComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.recetaService.detalleReceta(id).subscribe(
+    const idNumber = +id;
+    this.recetaService.detalleReceta(idNumber).subscribe(
       httpresp => {
       this.receta = <Receta>httpresp.body; // casting
-      console.log(this.receta);
+      // console.log(httpresp.body);
       }
       , fallo => { alert('Fallo del servidor'); console.error(fallo); });
   }

@@ -26,12 +26,4 @@ export class RecetaServiceService {
     return this.httpClient.get<Receta>(`${this.rutaServidor}/receta/detalle/${id}`, { observe: 'response' });
   }
 
-    // public detalleRecetaJSONP(id: String): Observable<Receta> {
-    //   let apiURL = `${this.rutaServidor}/receta/detalle/${id}?callback=datos`;
-    //   return this.jsonpClient.request(apiURL).map(
-    //     res => {
-
-    //     }
-    //   )
-    // }
 }

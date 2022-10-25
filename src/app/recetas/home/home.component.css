@@ -1,0 +1,13 @@
+.skewed {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: #b3d5f7;
+    z-index: -1;
+    transform: skewY(-16deg);
+    transform-origin: top left;
+}

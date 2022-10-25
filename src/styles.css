@@ -1,16 +1,25 @@
-footer {
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.footer {
     color: white;
     position: fixed;
     bottom: 0px;
     width: 100%;
 }
 
-.titulo {
-    margin: 10px;
-    color: antiquewhite;
-    font-weight: bolder
+.spacer {
+    flex: 1 1 auto;
 }
 
-.contenedorPrincipal {
-    margin-bottom: 100px;
-}
+
+/* .mat-row:hover {
+    background-color: red;
+} */

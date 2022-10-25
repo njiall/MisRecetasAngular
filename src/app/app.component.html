@@ -1,7 +1,38 @@
-<app-cabecera></app-cabecera>
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav mode="push">
+        <mat-toolbar color="secondary">
+            <span>Menu</span>
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>
+        <mat-nav-list>
+            <a routerLink="/" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>home</mat-icon>
+                <span>Inicio</span>
+            </a>
+            <a routerLink="/recetas" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>label</mat-icon>
+                <span>Listado de recetas</span>
+            </a>
+            <a routerLink="/buscador" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>search</mat-icon>
+                <span>Buscar receta</span>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-toolbar>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+      </button>
+        <h1>{{titulo}}</h1>
+        <span class="spacer"></span>
+        <span>{{version}}</span>
+    </mat-toolbar>
 
-<!-- <div class="container-fluid main-container contenedorPrincipal"> -->
-<div class="container-fluid contenedorPrincipal">
-    <router-outlet></router-outlet>
-</div>
-<app-pie></app-pie>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-sidenav-container>

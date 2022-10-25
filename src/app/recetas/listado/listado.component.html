@@ -1,22 +1,26 @@
-<div class="p-3 m-3">
-    <h1>{{ tituloPagina }}</h1>
-    <!-- <small>La base de datos contiene {{ recetas.length }} recetas</small> -->
-    <table class="table mt-3 animated fadeIn faster">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Categoría</th>
-                <th scope="col">Etiquetas</th>
-                <th scope="col">Detalle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let receta of recetas; let i = index">
-                <td>{{ receta.nombre }}</td>
-                <td>{{ receta.categoria }}</td>
-                <td>{{ receta.etiquetas }}</td>
-                <button (click)="detalleReceta( receta.id )" type="button" class="btn btn-block">Ver más</button>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<mat-progress-spinner mode="indeterminate" *ngIf="cargando">
+</mat-progress-spinner>
+<mat-table mat-table [dataSource]="recetas" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="categoria">
+        <th mat-header-cell *matHeaderCellDef> Categoria </th>
+        <td mat-cell *matCellDef="let element"> {{element.categoria}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="etiquetas">
+        <th mat-header-cell *matHeaderCellDef> Etiquetas </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-chip-list>
+                <mat-chip *ngFor="let etiqueta of element.etiquetas.split(',')">{{etiqueta}}</mat-chip>
+            </mat-chip-list>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="detalleReceta( row.id )"></tr>
+</mat-table>

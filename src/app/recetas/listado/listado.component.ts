@@ -11,12 +11,9 @@ export class ListadoComponent  implements OnInit  {
 
   public tituloPagina: String = 'Listado de recetas';
 
-  // public recetas: Receta[] = [
-  //     new Receta(1, 'Primera', 'No', 'Ninguna', 'Ninguno', 'Nada', '', ''),
-  //     new Receta(2, 'Segunda', 'No', 'Ninguna', 'Ninguno', 'Nada', '', '')
-  // ];
-
   public recetas: Receta[];
+  public cargando = false;
+  displayedColumns = ['nombre', 'categoria', 'etiquetas'];
 
   constructor(public servicio: RecetaServiceService, private router: Router) {}
 
@@ -24,11 +21,11 @@ export class ListadoComponent  implements OnInit  {
 
     this.servicio.listarRecetas().subscribe(
       httpresp => {
+        this.cargando = true;
         this.recetas = <Receta[]>httpresp.body; // casting
-
+        this.cargando = false;
       }
       , fallo => { alert('Fallo del servidor'); console.error(fallo); });
-
   }
 
   detalleReceta(id: Number) {

@@ -10,6 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HomeComponent } from './recetas/home/home.component';
 import { BuscadorComponent } from './recetas/buscador/buscador.component';
+import { FormsModule } from '@angular/forms';
+import { TablaRecetasComponent } from './recetas/tabla-recetas/tabla-recetas.component';
+
 
 
 
@@ -20,7 +23,8 @@ import { BuscadorComponent } from './recetas/buscador/buscador.component';
     ListadoComponent,
     DetalleComponent,
     HomeComponent,
-    BuscadorComponent
+    BuscadorComponent,
+    TablaRecetasComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,8 @@ import { BuscadorComponent } from './recetas/buscador/buscador.component';
     HttpClientModule,
     HttpClientJsonpModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

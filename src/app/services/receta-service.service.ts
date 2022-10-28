@@ -11,8 +11,8 @@ import { Filtro } from '../modelo/filtro';
 })
 export class RecetaServiceService {
 
-  // rutaServidor = 'http://msrecetario.herokuapp.com';
-  rutaServidor = 'http://localhost:8081';
+  rutaServidor = 'http://msrecetario.herokuapp.com';
+  //rutaServidor = 'http://localhost:8081';
 
 
   constructor(private httpClient: HttpClient) { }

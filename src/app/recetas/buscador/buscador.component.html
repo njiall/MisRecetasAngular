@@ -1,5 +1,5 @@
 <h1>Formulario de búsqueda</h1>
-
+<mat-divider></mat-divider>
 <form (ngSubmit)="buscar( )">
 
     <div class="row">
@@ -37,7 +37,7 @@
     <ng-container matColumnDef="etiquetas">
         <th mat-header-cell *matHeaderCellDef> Etiquetas </th>
         <td mat-cell *matCellDef="let element">
-            <mat-chip-list>
+            <mat-chip-list *ngIf="element.etiquetas?.length">
                 <mat-chip *ngFor="let etiqueta of element.etiquetas.split(',')">{{etiqueta}}</mat-chip>
             </mat-chip-list>
         </td>

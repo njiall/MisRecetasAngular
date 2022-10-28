@@ -11,11 +11,6 @@ import { MaterialModule } from './material/material.module';
 import { HomeComponent } from './recetas/home/home.component';
 import { BuscadorComponent } from './recetas/buscador/buscador.component';
 import { FormsModule } from '@angular/forms';
-import { TablaRecetasComponent } from './recetas/tabla-recetas/tabla-recetas.component';
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -23,8 +18,7 @@ import { TablaRecetasComponent } from './recetas/tabla-recetas/tabla-recetas.com
     ListadoComponent,
     DetalleComponent,
     HomeComponent,
-    BuscadorComponent,
-    TablaRecetasComponent
+    BuscadorComponent
   ],
   imports: [
     BrowserModule,

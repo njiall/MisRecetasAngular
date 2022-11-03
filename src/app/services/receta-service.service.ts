@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Receta } from '../modelo/receta';
 import { Filtro } from '../modelo/filtro';
+import { environment } from '../../environments/environment';
 
 
 
@@ -11,8 +12,7 @@ import { Filtro } from '../modelo/filtro';
 })
 export class RecetaServiceService {
 
-  rutaServidor = 'http://msrecetario.herokuapp.com';
-  //rutaServidor = 'http://localhost:8081';
+  private  rutaServidor: string = environment.APIEndpoint;
 
 
   constructor(private httpClient: HttpClient) { }
@@ -29,6 +29,9 @@ export class RecetaServiceService {
     return this.httpClient.post<Receta[]>(`${this.rutaServidor}/receta/buscador`, filtro );
   }
 
+  public cargarRecetas( recetas: Receta[] ): Observable<Receta[]> {
+    return this.httpClient.post<Receta[]>(`${this.rutaServidor}/receta/cargarRecetas`, recetas );
+  }
 
 
 }

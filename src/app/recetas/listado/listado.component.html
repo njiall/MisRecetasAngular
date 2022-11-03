@@ -1,6 +1,6 @@
 <mat-progress-spinner mode="indeterminate" *ngIf="cargando" style="margin:0 auto;">
 </mat-progress-spinner>
-<mat-table mat-table [dataSource]="recetas" class="mat-elevation-z8" *ngIf="!cargando">
+<mat-table mat-table [dataSource]="recetas" class="mat-elevation-z8 listado-table" *ngIf="!cargando">
 
     <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef> Nombre </th>

@@ -1,0 +1,71 @@
+<div>
+    <h1>Nueva receta</h1>
+    <mat-divider></mat-divider>
+</div>
+
+<form [formGroup]="formularioAlta" (ngSubmit)="alta()" autocomplete="off">
+    <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input type="text" placeholder="Nombre" aria-label="Number" matInput formControlName="nombre">
+    </mat-form-field>
+    <mat-error *ngIf="campoError('nombre')">
+        El nombre es obligatorio
+    </mat-error>
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Categorias</mat-label>
+        <mat-select formControlName="categoria">
+            <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+                {{categoria}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-error *ngIf="campoError('categoria')">
+        La categoría es obligatoria
+    </mat-error>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Etiquetas</mat-label>
+        <mat-chip-list #chipList aria-label="Etiquetas">
+            <mat-chip *ngFor="let etiqueta of etiquetas" (removed)="remove(etiqueta)">
+                {{etiqueta}}
+                <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+            </mat-chip>
+            <input placeholder="Nueva etiqueta..." #etiquetaInput [formControl]="etiquetaCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" #listado>
+            <mat-option *ngFor="let etiqueta of filteredEtiquetas | async" [value]="etiqueta">
+                {{etiqueta}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ingredientes</mat-label>
+        <textarea matInput formControlName="ingredientes" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+    <mat-error *ngIf="campoError('ingredientes')">
+        Los ingredientes son obligatorios
+    </mat-error>
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Instrucciones</mat-label>
+        <textarea matInput formControlName="instrucciones" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+    <mat-error *ngIf="campoError('instrucciones')">
+        Las instrucciones son obligatorias
+    </mat-error>
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Notas</mat-label>
+        <textarea matInput formControlName="notas" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+
+    <div>
+        <button mat-button type="submit" [disabled]="formularioAlta.invalid">Crear</button>
+    </div>
+</form>
+
+
+
+<mat-progress-spinner mode="indeterminate" *ngIf="cargando" style="margin:0 auto;">
+</mat-progress-spinner>

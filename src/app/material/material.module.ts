@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatButtonModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatCheckboxModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { MatIconModule, MatListModule, MatPaginatorModule, MatChipsModule, MatDatepickerModule } from '@angular/material';
 import { MatProgressSpinnerModule, MatTableModule, MatToolbarModule, MatCardModule, MatFormFieldModule } from '@angular/material';
 
@@ -21,7 +21,11 @@ import { MatProgressSpinnerModule, MatTableModule, MatToolbarModule, MatCardModu
     MatChipsModule,
     MatFormFieldModule,
     MatDatepickerModule,
-    MatCardModule
+    MatCardModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule
   ],
   declarations: []
 })

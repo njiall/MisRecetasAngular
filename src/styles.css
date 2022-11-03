@@ -19,7 +19,34 @@ body {
     flex: 1 1 auto;
 }
 
+.full-width {
+    width: 100%;
+}
 
-/* .mat-row:hover {
-    background-color: red;
-} */
+.listado-table {
+    width: 100%;
+}
+
+.mat-column-nombre {
+    padding-left: 16px;
+    font-size: 20px;
+    width: 35%;
+}
+
+.cdk-column-categoria {
+    text-align: center !important;
+}
+
+.mat-column-categoria {
+    font-style: italic;
+    text-align: center;
+    width: 25%;
+}
+
+.mat-column-etiquetas {
+    width: 40%;
+}
+
+.mat-row:hover {
+    background-color: rgb(220, 227, 231);
+}

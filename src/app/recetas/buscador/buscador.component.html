@@ -1,23 +1,45 @@
-<h1>Formulario de búsqueda</h1>
-<mat-divider></mat-divider>
-<form (ngSubmit)="buscar( )">
-
-    <div class="row">
-        <label for="nombre">Nombre</label>
-        <input type="text" placeholder="Nombre" name="nombre" [(ngModel)]="filtro.nombre" />
+<div fxLayout="column">
+    <div>
+        <h1>Formulario de búsqueda</h1>
+        <mat-divider></mat-divider>
     </div>
-    <div class="row">
-        <label for="categoria">Categoría</label>
-        <input type="text" placeholder="Categoria" name="categoria" [(ngModel)]="filtro.categoria" />
+    <div fxLayout="column">
+        <form [formGroup]="formularioEnvio" (ngSubmit)="buscar()">
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input type="text" placeholder="Nombre" aria-label="Number" matInput formControlName="nombre">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Categorias</mat-label>
+                <mat-select formControlName="categoria">
+                    <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+                        {{categoria}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Etiquetas</mat-label>
+                <mat-chip-list #chipList aria-label="Etiquetas">
+                    <mat-chip *ngFor="let etiqueta of etiquetas" (removed)="remove(etiqueta)">
+                        {{etiqueta}}
+                        <button matChipRemove>
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                    </mat-chip>
+                    <input placeholder="Nueva etiqueta..." #etiquetaInput [formControl]="etiquetaCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" #listado>
+                    <mat-option *ngFor="let etiqueta of filteredEtiquetas | async" [value]="etiqueta">
+                        {{etiqueta}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <div>
+                <button mat-button type="submit">Buscar</button>
+            </div>
+        </form>
     </div>
-    <div class="row">
-        <label for="etiquetas">Etiquetas</label>
-        <input type="text" placeholder="Etiquetas" name="etiquetas" [(ngModel)]="filtro.etiquetas" />
-    </div>
-    <div class="row">
-        <button mat-button type="submit">Buscar</button>
-    </div>
-</form>
+</div>
 
 <mat-progress-spinner mode="indeterminate" *ngIf="cargando" style="margin:0 auto;">
 </mat-progress-spinner>

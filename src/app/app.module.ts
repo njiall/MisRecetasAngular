@@ -10,7 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HomeComponent } from './recetas/home/home.component';
 import { BuscadorComponent } from './recetas/buscador/buscador.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AltaComponent } from './recetas/alta/alta.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     ListadoComponent,
     DetalleComponent,
     HomeComponent,
-    BuscadorComponent
+    BuscadorComponent,
+    AltaComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientJsonpModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

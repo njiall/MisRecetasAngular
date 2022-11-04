@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { Receta } from 'src/app/modelo/receta';
 import { RecetaServiceService } from '../../services/receta-service.service';
@@ -15,18 +16,18 @@ export class ListadoComponent  implements OnInit  {
   public cargando = true;
   displayedColumns = ['nombre', 'categoria', 'etiquetas'];
 
-  constructor(public servicio: RecetaServiceService, private router: Router) {}
+  constructor(public servicio: RecetaServiceService, private router: Router, private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
 
     this.servicio.listarRecetas().subscribe(
       httpresp => {
         this.cargando = false;
-        this.recetas = <Receta[]>httpresp.body; // casting
+        this.recetas = <Receta[]>httpresp.body;
       }
       , fallo => {
         this.cargando = false;
-        alert('Fallo del servidor'); console.error(fallo);  // TODO Cambiar el mensaje
+       this.procesarError(fallo);
       });
   }
 
@@ -34,5 +35,17 @@ export class ListadoComponent  implements OnInit  {
     this.router.navigate(['/detalle', id]);
   }
 
+  openSnackBar(mensaje: string, tipo: string) {
+    this._snackBar.open(mensaje, tipo, {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
+
+  procesarError(fallo: any) {
+    console.error(fallo);
+    const mensaje = `${fallo.status} : ${fallo.name} - ${fallo.message}`;
+    this.openSnackBar(mensaje, 'Error');
+  }
 
 }

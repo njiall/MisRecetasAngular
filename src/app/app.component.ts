@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public titulo: String = 'Mis Recetas';
-  public version: String = 'Versión 0.2';
+  public version: String = 'Versión 0.3.0';
  //public version: String = version;
 
 }

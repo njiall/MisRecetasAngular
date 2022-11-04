@@ -7,7 +7,7 @@ import { Filtro } from 'src/app/modelo/filtro';
 import { Receta } from 'src/app/modelo/receta';
 import { RecetaServiceService } from 'src/app/services/receta-service.service';
 import { map, startWith} from 'rxjs/operators';
-import { MatAutocompleteSelectedEvent, MatChipInputEvent } from '@angular/material';
+import { MatAutocompleteSelectedEvent, MatChipInputEvent, MatSnackBar } from '@angular/material';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { Observable } from 'rxjs';
 
@@ -40,7 +40,8 @@ export class BuscadorComponent implements OnInit {
     categoria: []
   });
 
-  constructor(public servicio: RecetaServiceService, private router: Router, private fb: FormBuilder) {
+  constructor(public servicio: RecetaServiceService, private router: Router, private fb: FormBuilder,
+    private _snackBar: MatSnackBar) {
     this.filteredEtiquetas = this.etiquetaCtrl.valueChanges.pipe(
       startWith(null),
       map((etiqueta: string | null) => (etiqueta ? this._filter(etiqueta) : this.allEtiquetas.slice())),
@@ -53,14 +54,9 @@ export class BuscadorComponent implements OnInit {
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our fruit
     if (value) {
       this.etiquetas.push(value);
     }
-
-    // Clear the input value
-    // tslint:disable-next-line:no-non-null-assertion
-    // event.chipInput!.clear();
 
     this.etiquetaCtrl.setValue(null);
   }
@@ -97,12 +93,25 @@ export class BuscadorComponent implements OnInit {
       }
       , fallo => {
         this.cargando = false;
-        alert('Fallo del servidor'); console.error(fallo);  // TODO Cambiar el mensaje
+        this.procesarError(fallo);
       });
   }
 
   detalleReceta(id: Number) {
     this.router.navigate(['/detalle', id]);
+  }
+
+  openSnackBar(mensaje: string, tipo: string) {
+    this._snackBar.open(mensaje, tipo, {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
+
+  procesarError(fallo: any) {
+    console.error(fallo);
+    const mensaje = `${fallo.status} : ${fallo.name} - ${fallo.message}`;
+    this.openSnackBar(mensaje, 'Error');
   }
 
 }

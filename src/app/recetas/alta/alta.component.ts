@@ -9,7 +9,7 @@ import { EtiquetaEnum } from 'src/app/modelo/etiqueta.enum';
 import { Router } from '@angular/router';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { Observable } from 'rxjs';
-import { MatChipInputEvent } from '@angular/material';
+import { MatChipInputEvent, MatSnackBar } from '@angular/material';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 
 
@@ -26,8 +26,7 @@ export class AltaComponent  {
   etiquetas: string[] = [];
   allEtiquetas: string[] = Object.values(EtiquetaEnum);
   @ViewChild('etiquetaInput') etiquetaInput: ElementRef<HTMLInputElement>;
-  @ViewChild('listado') listado: ElementRef<HTMLInputElement>;
-// Fin chips
+ // Fin chips
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
   public cargando = false;
@@ -46,7 +45,8 @@ export class AltaComponent  {
   });
 
 
-  constructor(public servicio: RecetaServiceService, private fb: FormBuilder, private _ngZone: NgZone,  private router: Router) {
+  constructor(public servicio: RecetaServiceService, private fb: FormBuilder, private _ngZone: NgZone
+    ,  private router: Router, private _snackBar: MatSnackBar ) {
     this.filteredEtiquetas = this.etiquetaCtrl.valueChanges.pipe(
       startWith(null),
       map((etiqueta: string | null) => (etiqueta ? this._filter(etiqueta) : this.allEtiquetas.slice())),
@@ -57,14 +57,11 @@ export class AltaComponent  {
    add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our fruit
-    if (value) {
+     if (value) {
       this.etiquetas.push(value);
     }
 
-    // Clear the input value
-    // tslint:disable-next-line:no-non-null-assertion
-    // event.chipInput!.clear();
+
 
     this.etiquetaCtrl.setValue(null);
   }
@@ -116,20 +113,28 @@ export class AltaComponent  {
       httpresp => {
         this.cargando = false;
         this.listaRecetas = <Receta[]>httpresp;
-        console.log('Casteado ');
-        console.log(this.listaRecetas[0].id);
+        this.openSnackBar(`Se ha dado de alta la receta ${this.nuevaReceta.nombre} `, 'Alta');
         this.router.navigate(['/detalle', this.listaRecetas[0].id]);
       }
       , fallo => {
         this.cargando = false;
-        alert('Fallo del servidor'); console.error(fallo);  // TODO Cambiar el mensaje
+        this.procesarError(fallo);
       });
-
-
-
-
   }
 
+  openSnackBar(mensaje: string, tipo: string) {
+    this._snackBar.open(mensaje, tipo, {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
 
+  procesarError(fallo: any) {
+    console.error(fallo);
+    const mensaje = `${fallo.status} : ${fallo.name} - ${fallo.message}`;
+    this.openSnackBar(mensaje, 'Error');
+  }
 
 }
+
+

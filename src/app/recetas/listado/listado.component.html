@@ -1,3 +1,9 @@
+<div>
+    <h1>Listado de recetas</h1>
+    <span *ngIf="!cargando">La base de datos contiene {{ recetas.length }} recetas</span>
+    <mat-divider></mat-divider>
+</div>
+
 <mat-progress-spinner mode="indeterminate" *ngIf="cargando" style="margin:0 auto;">
 </mat-progress-spinner>
 <mat-table mat-table [dataSource]="recetas" class="mat-elevation-z8 listado-table" *ngIf="!cargando">

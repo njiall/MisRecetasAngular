@@ -35,7 +35,7 @@
                 </mat-autocomplete>
             </mat-form-field>
             <div>
-                <button mat-button type="submit">Buscar</button>
+                <button mat-raised-button color="primary" type="submit">Buscar</button>
             </div>
         </form>
     </div>
@@ -43,7 +43,8 @@
 
 <mat-progress-spinner mode="indeterminate" *ngIf="cargando" style="margin:0 auto;">
 </mat-progress-spinner>
-
+<!-- <span *ngIf="!cargando">Se han recuperado {{ recetas.length }} recetas</span> -->
+<mat-divider></mat-divider>
 <mat-table mat-table [dataSource]="recetas" class="mat-elevation-z8" *ngIf="!cargando && conDatos">
 
     <ng-container matColumnDef="nombre">
